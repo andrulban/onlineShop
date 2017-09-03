@@ -18,8 +18,6 @@ public class Battery {
     @Column
     private BatteryType batteryType;
     @Column
-    private String name;
-    @Column
     private String description;
 
     public Battery() {
@@ -39,14 +37,6 @@ public class Battery {
 
     public void setBatteryType(BatteryType batteryType) {
         this.batteryType = batteryType;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getDescription() {

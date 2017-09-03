@@ -22,8 +22,7 @@ public class Screen {
     @Enumerated(EnumType.STRING)
     private ScreenType screenType;
 
-    public Screen(float diagonal) {
-        this.diagonal = diagonal;
+    public Screen() {
     }
 
     public long getId() {

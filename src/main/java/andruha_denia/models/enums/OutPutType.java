@@ -6,5 +6,8 @@ package andruha_denia.models.enums;
 public enum OutPutType {
     USB,
     USB2,
-    THUNDERBOLT
+    THUNDERBOLT,
+    THUNDERBOLT2,
+    MAGSAVE,
+    MAGSAVE2
 }

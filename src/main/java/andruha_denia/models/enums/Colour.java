@@ -5,5 +5,6 @@ package andruha_denia.models.enums;
  */
 public enum Colour {
     WHITE,
-    BLACK
+    BLACK,
+    ALUMINIUM
 }

@@ -20,7 +20,7 @@ public class Ram {
     @Column
     private RamType ramType;
     @Column
-    private int hertz;
+    private int megaHertz;
 
     public Ram() {
     }
@@ -49,11 +49,11 @@ public class Ram {
         this.ramType = ramType;
     }
 
-    public int getHertz() {
-        return hertz;
+    public int getMegaHertz() {
+        return megaHertz;
     }
 
-    public void setHertz(int hertz) {
-        this.hertz = hertz;
+    public void setMegaHertz(int megaHertz) {
+        this.megaHertz = megaHertz;
     }
 }

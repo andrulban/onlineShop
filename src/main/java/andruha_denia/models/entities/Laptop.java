@@ -16,6 +16,8 @@ public class Laptop {
     @GeneratedValue
     private long id;
     @Column
+    private String name;
+    @Column
     private int ramSlotsAmount;
     @Column
     private float weight;
@@ -242,4 +244,11 @@ public class Laptop {
         this.outputs = outputs;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
 }

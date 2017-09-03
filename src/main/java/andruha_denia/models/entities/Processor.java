@@ -17,10 +17,10 @@ public class Processor {
     private String name;
     @Column
     private int coresAmount;
-    @Column
-    private float minHertz;
-    @Column
-    private float maxHertz;
+    @Column(name = "min_g_hertz")
+    private float minGHertz;
+    @Column(name = "max_g_hertz")
+    private float maxGHertz;
 
     public Processor() {
     }
@@ -41,20 +41,20 @@ public class Processor {
         this.coresAmount = coresAmount;
     }
 
-    public float getMinHertz() {
-        return minHertz;
+    public float getMinGHertz() {
+        return minGHertz;
     }
 
-    public void setMinHertz(float minHertz) {
-        this.minHertz = minHertz;
+    public void setMinGHertz(float minGHertz) {
+        this.minGHertz = minGHertz;
     }
 
-    public float getMaxHertz() {
-        return maxHertz;
+    public float getMaxGHertz() {
+        return maxGHertz;
     }
 
-    public void setMaxHertz(float maxHertz) {
-        this.maxHertz = maxHertz;
+    public void setMaxGHertz(float maxGHertz) {
+        this.maxGHertz = maxGHertz;
     }
 
     public long getId() {
