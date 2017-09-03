@@ -60,37 +60,41 @@ public class OnlineShopApplication {
 
 	public static void main(String[] args) {
 		SpringApplication.run(OnlineShopApplication.class, args);
-		Laptop laptop = new Laptop();
-		laptop.setName("Apple A1466 MacBook Air 13(MQD32UA/A)");
-		laptop.setOs(OS.MACOS);
-		laptop.setManufacturer(Manufacturer.APPLE);
-		//оптический привод
-		laptop.setColour(Colour.ALUMINIUM);
-		laptop.setWeight(1.35F);
-		laptop.setKeyBoardIlluminated(true);
-		laptop.setRamSlotsAmount(0);
-		laptop.setAdvancedInfo("------");
-		laptop.setWidth(325);
-		laptop.setLength(227);
-		laptop.setHeight(17);
-		laptop.setKit("Ноутбук MacBook Air\n" +
-				"Адаптер питания\n" +
-				"Штепсельная вилка\n" +
-				"Руководство пользователя\n" +
-				"Подробнее: https://rozetka.com.ua/apple_mqd32ua_a/p17929266/#tab=characteristics");
-		laptop.setGranteeMonth(12);
+//		Laptop laptop = new Laptop();
+//		laptop.setName("Apple A1466 MacBook Air 13(MQD32UA/A)");
+//		laptop.setOs(OS.MACOS);
+//		laptop.setManufacturer(Manufacturer.APPLE);
+//		laptop.setColour(Colour.ALUMINIUM);
+//		laptop.setWeight(1.35F);
+//		laptop.setKeyBoardIlluminated(true);
+//		laptop.setRamSlotsAmount(0);
+//		laptop.setAdvancedInfo("------");
+//		laptop.setWidth(325);
+//		laptop.setLength(227);
+//		laptop.setHeight(17);
+//		laptop.setKit("Ноутбук MacBook Air\n" +
+//				"Адаптер питания\n" +
+//				"Штепсельная вилка\n" +
+//				"Руководство пользователя\n" +
+//				"Подробнее: https://rozetka.com.ua/apple_mqd32ua_a/p17929266/#tab=characteristics");
+//		laptop.setGranteeMonth(12);
+//
+//		laptop.setProcessor(processorService.getProcessor(1L));
+//		laptop.setScreen(screenService.getScreen(1L));
+//		laptop.setRam(ramService.getRam(1L));
+//		laptop.setBattery(batteryService.getBattery(1L));
+//
+//		laptop.setDrive(new HashSet<>(driveService.getAllDrive()));
+//		laptop.setGpu(new HashSet<>(gpuService.getAllGpu()));
+//		laptop.setConnectionAdapter(new HashSet<>(connectionAdapterService.getAllConnectionAdapter()));
+//		laptop.setOutputs(new HashSet<>(outputService.getAllOutput()));
+//
+//		laptopService.add(laptop);
 
-		laptop.setProcessor(processorService.getProcessor(1L));
-		laptop.setScreen(screenService.getScreen(1L));
-		laptop.setRam(ramService.getRam(1L));
-		laptop.setBattery(batteryService.getBattery(1L));
 
-		laptop.setDrive(new HashSet<>(driveService.getAllDrive()));
-		laptop.setGpu(new HashSet<>(gpuService.getAllGpu()));
-		laptop.setConnectionAdapter(new HashSet<>(connectionAdapterService.getAllConnectionAdapter()));
-		laptop.setOutputs(new HashSet<>(outputService.getAllOutput()));
 
-		laptopService.add(laptop);
+
+
 
 
 
