@@ -1,9 +1,24 @@
 package andruha_denia.models.enums;
 
 /**
- * Created by andrusha on 31.08.17.
+ * @author andrusha
+ * @since 31.08.17.
  */
 public enum Manufacturer {
-    APPLE,
-    MICROSOFT
+    APPLE("APPLE"),
+    MICROSOFT("MICROSOFT");
+    private final String manufacturer;
+
+    Manufacturer(String manufacturer) {
+        this.manufacturer = manufacturer;
+    }
+
+    @Override
+    public String toString() {
+        return manufacturer;
+    }
+
+    public String getManufacturer() {
+        return manufacturer;
+    }
 }

@@ -6,7 +6,8 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 
 /**
- * Created by andrusha on 31.08.17.
+ * @author andrusha
+ * @since 31.08.17.
  */
 @Entity
 public class Processor {

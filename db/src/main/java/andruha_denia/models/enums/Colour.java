@@ -1,10 +1,25 @@
 package andruha_denia.models.enums;
 
 /**
- * Created by andrusha on 31.08.17.
+ * @author andrusha
+ * @since 31.08.17.
  */
 public enum Colour {
-    WHITE,
-    BLACK,
-    ALUMINIUM
+    WHITE("WHITE"),
+    BLACK("BLACK"),
+    ALUMINIUM("ALUMINIUM");
+    private final String colour;
+
+    Colour(String colour) {
+        this.colour = colour;
+    }
+
+    @Override
+    public String toString() {
+        return colour;
+    }
+
+    public String getColour() {
+        return colour;
+    }
 }

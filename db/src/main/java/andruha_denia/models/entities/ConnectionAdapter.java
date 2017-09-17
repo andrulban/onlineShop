@@ -5,13 +5,15 @@ import andruha_denia.models.enums.ConnectionAdapterType;
 import javax.persistence.*;
 
 /**
- * Created by andrusha on 31.08.17.
+ * @author andrusha
+ * @since 31.08.17.
  */
 @Entity
 public class ConnectionAdapter {
     @Id
     @GeneratedValue
     private long id;
+
     @Enumerated(EnumType.STRING)
     private ConnectionAdapterType connectionAdapterType;
     @Column

@@ -1,16 +1,17 @@
 package andruha_denia;
 
-import andruha_denia.models.entities.*;
-import andruha_denia.models.enums.*;
 import andruha_denia.services.interfaces.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
-import java.util.HashSet;
-
+/**
+ * @author azozello
+ * @since 10.09.2017
+ * TODO: Logging
+ */
 @SpringBootApplication
-public class OnlineShopApplication {
+public class DataBaseApplication {
 	private static BatteryService batteryService;
 	private static ConnectionAdapterService connectionAdapterService;
 	private static DriveService driveService;
@@ -59,7 +60,7 @@ public class OnlineShopApplication {
 	}
 
 	public static void main(String[] args) {
-		SpringApplication.run(OnlineShopApplication.class, args);
+		SpringApplication.run(DataBaseApplication.class, args);
 //		Laptop laptop = new Laptop();
 //		laptop.setName("Apple A1466 MacBook Air 13(MQD32UA/A)");
 //		laptop.setOs(OS.MACOS);

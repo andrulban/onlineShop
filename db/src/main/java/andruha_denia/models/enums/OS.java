@@ -1,10 +1,26 @@
 package andruha_denia.models.enums;
 
 /**
- * Created by andrusha on 31.08.17.
+ * @author andrusha
+ * @since 31.08.17.
  */
 public enum OS {
-    MACOS,
-    WINDOWS,
-    LINUX
+    MACOS("MACOS"),
+    WINDOWS("WINDOWS"),
+    LINUX("LINUX");
+
+    private final String os;
+
+    OS(String os) {
+        this.os = os;
+    }
+
+    @Override
+    public String toString() {
+        return os;
+    }
+
+    public String getOs() {
+        return os;
+    }
 }

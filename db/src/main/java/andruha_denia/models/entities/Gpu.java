@@ -5,7 +5,8 @@ import andruha_denia.models.enums.GpuType;
 import javax.persistence.*;
 
 /**
- * Created by andrusha on 31.08.17.
+ * @author andrusha
+ * @since 31.08.17.
  */
 @Entity
 public class Gpu {

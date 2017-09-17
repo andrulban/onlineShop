@@ -8,7 +8,8 @@ import javax.persistence.*;
 import java.util.Set;
 
 /**
- * Created by andrusha on 31.08.17.
+ * @author andrusha
+ * @since 31.08.17.
  */
 @Entity
 public class Laptop {

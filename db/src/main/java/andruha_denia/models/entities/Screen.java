@@ -6,7 +6,8 @@ import andruha_denia.models.enums.ScreenType;
 import javax.persistence.*;
 
 /**
- * Created by andrusha on 31.08.17.
+ * @author andrusha
+ * @since 31.08.17.
  */
 @Entity
 public class Screen {
