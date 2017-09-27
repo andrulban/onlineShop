@@ -15,4 +15,9 @@ public class IndexController {
     public String index() {
         return "index.html";
     }
+
+    @RequestMapping("/login")
+    public String login(){
+        return "pages/login.html";
+    }
 }
