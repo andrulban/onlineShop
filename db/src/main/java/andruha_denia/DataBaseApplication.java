@@ -7,11 +7,12 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * @author azozello
  * @since 10.09.2017
  *
- * TODO: ДАЛБАЁБ!!!!!!!! У ТЕБЯ ССЛ АЛИАС ЛЕЖИТ В ПАПКЕ С ПРОЕКТОМ!!!!!!!!!!!!!
+ * TODO: Make keystore
  * TODO: Tests
  * TODO: Logging (see TestControllerRest & LoggingAspect)
  * TODO: Comments code convention
  * TODO: API documentation (Javadoc)
+ * TODO: Add csrf
  */
 @SpringBootApplication
 public class DataBaseApplication {
