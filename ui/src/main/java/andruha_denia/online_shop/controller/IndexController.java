@@ -16,7 +16,12 @@ public class IndexController {
     private final String URL_UNSECURED = "https://localhost:8043/test/unsecured";
     private final String logPass = "user:pass";
 
-    @RequestMapping("/{flag}")
+    @RequestMapping("/")
+    public String home(){
+        return "web/index";
+    }
+
+    @RequestMapping("/test/{flag}")
     public String index(@PathVariable int flag, Model model){
         byte[] bytesEncoded = Base64.encodeBase64(logPass.getBytes());
         RestTemplate template = new RestTemplate();
@@ -35,10 +40,10 @@ public class IndexController {
                 restData = template.exchange(URL_UNSECURED, HttpMethod.GET, request, String.class).getBody();
                 break;
             default:
-                return "index";
+                return "test";
         }
 
         model.addAttribute("sata",restData);
-        return "index";
+        return "test";
     }
 }

@@ -10,7 +10,6 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
  * TODO: ДАЛБАЁБ!!!!!!!! У ТЕБЯ ССЛ АЛИАС ЛЕЖИТ В ПАПКЕ С ПРОЕКТОМ!!!!!!!!!!!!!
  * TODO: Tests
  * TODO: Logging (see TestControllerRest & LoggingAspect)
- * TODO: Micro service Authentication
  * TODO: Comments code convention
  * TODO: API documentation (Javadoc)
  */
