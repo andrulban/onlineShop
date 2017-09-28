@@ -21,6 +21,26 @@ public class IndexController {
         return "web/index";
     }
 
+    @RequestMapping("/about")
+    public String about(){
+        return "web/about";
+    }
+
+    @RequestMapping("/icons")
+    public String icons(){
+        return "web/icons";
+    }
+
+    @RequestMapping("/codes")
+    public String codes(){
+        return "web/codes";
+    }
+
+    @RequestMapping("/mail")
+    public String mail(){
+        return "web/mail";
+    }
+
     @RequestMapping("/test/{flag}")
     public String index(@PathVariable int flag, Model model){
         byte[] bytesEncoded = Base64.encodeBase64(logPass.getBytes());
