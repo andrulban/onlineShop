@@ -1,17 +1,14 @@
-package andruha_denia.aop;
+package andruha_denia.aspects;
 
 import org.apache.log4j.Logger;
 import org.aspectj.lang.ProceedingJoinPoint;
 import org.aspectj.lang.annotation.Around;
-import org.aspectj.lang.annotation.Aspect;
 import org.aspectj.lang.annotation.Pointcut;
-import org.springframework.stereotype.Component;
 
 /**
  * @author azozello
  * @since 17.09.17.
  */
-
 
 //@Aspect
 public class LoggingAspect {

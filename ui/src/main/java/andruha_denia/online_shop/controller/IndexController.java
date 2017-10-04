@@ -45,7 +45,7 @@ public class IndexController {
         String restData = "";
         switch (flag){
             case 1:
-                restData = template.getForObject(URL_SECURED,String.class);
+                restData = template.getForObject(URL_SECURED, String.class);
                 break;
             case 0:
                 restData = template.getForObject(URL_UNSECURED, String.class);

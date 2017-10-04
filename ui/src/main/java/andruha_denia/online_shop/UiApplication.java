@@ -10,7 +10,6 @@ import javax.net.ssl.HttpsURLConnection;
  * @since 22.09.2017
  * lines 17-19 must be changed before th release (develop-only)
  * TODO: Make Pages Work Again
- * TODO: Create Interceptor that adds auth token to every request
  */
 @SpringBootApplication
 public class UiApplication {

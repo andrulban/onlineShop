@@ -1,22 +1,20 @@
 package andruha_denia.models.entities;
 
 import andruha_denia.models.enums.BatteryType;
+import andruha_denia.utils.interfaces.DTOConvertible;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * @author andrusha
  * @since 31.08.17.
  */
 @Entity
-public class Battery {
+public class Battery implements DTOConvertible {
     @Id
     @GeneratedValue
     private long id;
-    @Column
+    @Enumerated(EnumType.STRING)
     private BatteryType batteryType;
     @Column
     private String description;

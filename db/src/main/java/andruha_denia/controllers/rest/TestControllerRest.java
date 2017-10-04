@@ -1,17 +1,9 @@
 package andruha_denia.controllers.rest;
 
-import com.sun.xml.internal.ws.server.sei.MessageFiller;
 import org.apache.log4j.Logger;
-import org.apache.tomcat.util.codec.binary.Base64;
-import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpRequest;
 import org.springframework.web.bind.annotation.RequestHeader;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
-import sun.misc.BASE64Decoder;
-
-import java.util.List;
-import java.util.Map;
 
 /**
  * @author azozello

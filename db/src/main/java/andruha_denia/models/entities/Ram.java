@@ -2,10 +2,7 @@ package andruha_denia.models.entities;
 
 import andruha_denia.models.enums.RamType;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * @author andrusha
@@ -18,7 +15,7 @@ public class Ram {
     private long id;
     @Column
     private int size;
-    @Column
+    @Enumerated(EnumType.STRING)
     private RamType ramType;
     @Column
     private int megaHertz;
