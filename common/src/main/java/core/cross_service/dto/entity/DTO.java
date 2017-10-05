@@ -1,5 +1,6 @@
 package core.cross_service.dto.entity;
 
+import java.util.HashMap;
 import java.util.HashSet;
 import java.util.Map;
 import java.util.Set;
@@ -11,6 +12,10 @@ import java.util.Set;
 public class DTO {
     private long id;
     private Map<String, String> fields;
+
+    public DTO() {
+        fields = new HashMap<>();
+    }
 
     public long getId() {
         return id;
@@ -46,8 +51,10 @@ public class DTO {
             return false;
         }
         final DTO anotherDTO = (DTO) o;
+
         Set<String> thisValues = new HashSet<>(fields.values());
         Set<String> anotherValues = new HashSet<>(anotherDTO.getFields().values());
+
         return thisValues.equals(anotherValues);
     }
 }

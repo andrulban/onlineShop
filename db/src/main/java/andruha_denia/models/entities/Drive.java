@@ -1,6 +1,8 @@
 package andruha_denia.models.entities;
 
 import andruha_denia.models.enums.DriveType;
+import andruha_denia.utils.DTOConvertible;
+import core.cross_service.dto.entity.DTO;
 
 import javax.persistence.*;
 
@@ -9,16 +11,26 @@ import javax.persistence.*;
  * @since 31.08.17.
  */
 @Entity
-public class Drive {
+public class Drive implements DTOConvertible {
     @Id
     @GeneratedValue
     private long id;
+
     @Enumerated(EnumType.STRING)
     private DriveType driveType;
+
     @Column
     private int size;
 
-    public Drive() {
+    @Override
+    public DTO convert() {
+        DTO resultDTO = new DTO();
+
+        resultDTO.setId(id);
+        resultDTO.addField("driveType",driveType.toString());
+        resultDTO.addField("size",""+size);
+
+        return resultDTO;
     }
 
     public long getId() {

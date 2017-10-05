@@ -1,7 +1,8 @@
 package andruha_denia.models.entities;
 
 import andruha_denia.models.enums.BatteryType;
-import andruha_denia.utils.interfaces.DTOConvertible;
+import andruha_denia.utils.DTOConvertible;
+import core.cross_service.dto.entity.DTO;
 
 import javax.persistence.*;
 
@@ -14,12 +15,22 @@ public class Battery implements DTOConvertible {
     @Id
     @GeneratedValue
     private long id;
+
     @Enumerated(EnumType.STRING)
     private BatteryType batteryType;
+
     @Column
     private String description;
 
-    public Battery() {
+    @Override
+    public DTO convert() {
+        DTO resultDTO = new DTO();
+
+        resultDTO.setId(id);
+        resultDTO.addField("batteryType",batteryType.toString());
+        resultDTO.addField("description",description);
+
+        return resultDTO;
     }
 
     public long getId() {

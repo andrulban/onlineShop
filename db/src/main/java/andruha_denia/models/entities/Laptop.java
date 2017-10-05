@@ -3,6 +3,9 @@ package andruha_denia.models.entities;
 import andruha_denia.models.enums.Colour;
 import andruha_denia.models.enums.Manufacturer;
 import andruha_denia.models.enums.OS;
+import andruha_denia.utils.DTOConvertible;
+import core.cross_service.dto.entity.DTO;
+import core.cross_service.dto.entity.LaptopDTO;
 
 import javax.persistence.*;
 import java.util.Set;
@@ -12,47 +15,61 @@ import java.util.Set;
  * @since 31.08.17.
  */
 @Entity
-public class Laptop {
+public class Laptop implements DTOConvertible {
     @Id
     @GeneratedValue
     private long id;
+
     @Column
     private String name;
+
     @Column
     private int ramSlotsAmount;
+
     @Column
     private float weight;
+
     @Column(name = "illumination")
     private boolean isKeyBoardIlluminated;
+
     @Column
     private int granteeMonth;
+
     @Column
     private int length;
+
     @Column
     private int width;
+
     @Column
     private int height;
+
     @Column
     private String kit;
+
     @Column
     private String advancedInfo;
 
     @Enumerated(EnumType.STRING)
     private OS os;
+
     @Enumerated(EnumType.STRING)
     private Colour colour;
+
     @Enumerated(EnumType.STRING)
     private Manufacturer manufacturer;
 
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "processor_id", referencedColumnName = "id")
     private Processor processor;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "screen_id", referencedColumnName = "id")
     private Screen screen;
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ram_id", referencedColumnName = "id")
     private Ram ram;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "battery_id", referencedColumnName = "id")
     private Battery battery;
@@ -61,20 +78,25 @@ public class Laptop {
     @JoinTable(name = "laptop__drive", joinColumns = @JoinColumn(name = "laptop_id", referencedColumnName = "id"),
     inverseJoinColumns = @JoinColumn(name = "drive_id", referencedColumnName = "id"))
     private Set<Drive> drive;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "laptop__gpu", joinColumns = @JoinColumn(name = "laptop_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "gpu_id", referencedColumnName = "id"))
     private Set<Gpu> gpu;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "laptop__connection_adapter", joinColumns = @JoinColumn(name = "laptop_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "connection_adapter_id", referencedColumnName = "id"))
     private Set<ConnectionAdapter> connectionAdapter;
+
     @ManyToMany(fetch = FetchType.LAZY)
     @JoinTable(name = "laptop__output", joinColumns = @JoinColumn(name = "laptop_id", referencedColumnName = "id"),
             inverseJoinColumns = @JoinColumn(name = "output_id", referencedColumnName = "id"))
     private Set<Output> outputs;
 
-    public Laptop() {
+    @Override
+    public DTO convert() {
+        return new LaptopDTO();
     }
 
     public long getId() {

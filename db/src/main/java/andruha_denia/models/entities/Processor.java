@@ -1,5 +1,8 @@
 package andruha_denia.models.entities;
 
+import andruha_denia.utils.DTOConvertible;
+import core.cross_service.dto.entity.DTO;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
@@ -10,20 +13,34 @@ import javax.persistence.Id;
  * @since 31.08.17.
  */
 @Entity
-public class Processor {
+public class Processor implements DTOConvertible {
     @Id
     @GeneratedValue
     private long id;
+
     @Column
     private String name;
+
     @Column
     private int coresAmount;
+
     @Column(name = "min_g_hertz")
     private float minGHertz;
+
     @Column(name = "max_g_hertz")
     private float maxGHertz;
 
-    public Processor() {
+    @Override
+    public DTO convert() {
+        DTO resultDTO = new DTO();
+
+        resultDTO.setId(id);
+        resultDTO.addField("name",name);
+        resultDTO.addField("coresAmount",""+coresAmount);
+        resultDTO.addField("minGHertz",""+minGHertz);
+        resultDTO.addField("maxGHertz",""+maxGHertz);
+
+        return resultDTO;
     }
 
     public String getName() {
