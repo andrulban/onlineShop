@@ -17,7 +17,7 @@ public class UiApplication {
 
 	public static void main(String[] args) {
 		HttpsURLConnection.setDefaultHostnameVerifier ((hostname, session) -> true);
-		System.setProperty("javax.net.ssl.trustStore","/Users/andrusha/Programming/IdeaProjects/onlineShop/keystore.p12");
+		System.setProperty("javax.net.ssl.trustStore","/Users/andrusha/Programming/IdeaProjects/1_onlineShop/keystore.p12");
 		System.setProperty("javax.net.ssl.trustStorePassword","w2a6c8wvk");
 		SpringApplication.run(UiApplication.class, args);
 	}
