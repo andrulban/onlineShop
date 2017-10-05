@@ -14,35 +14,38 @@ import java.util.List;
 
 @RestController
 public class DriveControllerRest {
+
     private DriveService driveService;
-
-    @RequestMapping(value = "/db/drive/getAll", method = RequestMethod.GET)
-    public List<Drive> getAll() {
-        return driveService.getAllDrive();
-    }
-
-    @RequestMapping("/db/drive/get/{id}")
-    public Drive get(@PathVariable long id){
-        return driveService.getDrive(id);
-    }
-
-    @RequestMapping(value = "/db/drive/add", method = RequestMethod.POST)
-    public void add(@RequestBody Drive drive){
-        driveService.addDrive(drive);
-    }
-
-    @RequestMapping(value = "/db/drive/edit", method = RequestMethod.POST)
-    public void edit(@RequestBody Drive drive){
-        driveService.editDrive(drive);
-    }
-
-    @RequestMapping(value = "/db/drive/delete/{id}")
-    public void delete(@PathVariable long id){
-        driveService.deleteDrive(id);
-    }
 
     @Autowired
     public void setDriveService(DriveService driveService) {
         this.driveService = driveService;
     }
+
+    @GetMapping(value = "/db/drives")
+    public List<Drive> getAll() {
+        return driveService.getAllDrive();
+    }
+
+    @GetMapping("/db/drives/{id}")
+    public Drive get(@PathVariable long id) {
+        return driveService.getDrive(id);
+    }
+
+    @PostMapping(value = "/db/drives")
+    public void add(@RequestBody Drive drive) {
+        driveService.addDrive(drive);
+    }
+
+    @PutMapping(value = "/db/drives/{id}")
+    public void edit(@PathVariable long id, @RequestBody Drive drive) {
+        drive.setId(id);
+        driveService.editDrive(drive);
+    }
+
+    @DeleteMapping(value = "/db/drives/{id}")
+    public void delete(@PathVariable long id) {
+        driveService.deleteDrive(id);
+    }
+
 }

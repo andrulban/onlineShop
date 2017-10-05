@@ -16,33 +16,35 @@ import java.util.List;
 public class ProcessorControllerRest {
     private ProcessorService processorService;
 
-    @RequestMapping(value = "/db/processor/getAll", method = RequestMethod.GET)
-    public List<Processor> getAll() {
-        return processorService.getAllProcessor();
-    }
-
-    @RequestMapping("/db/processor/get/{id}")
-    public Processor get(@PathVariable long id){
-        return processorService.getProcessor(id);
-    }
-
-    @RequestMapping(value = "/db/processor/add", method = RequestMethod.POST)
-    public void add(@RequestBody Processor processor){
-        processorService.addProcessor(processor);
-    }
-
-    @RequestMapping(value = "/db/processor/edit", method = RequestMethod.POST)
-    public void edit(@RequestBody Processor processor){
-        processorService.editProcessor(processor);
-    }
-
-    @RequestMapping(value = "/db/processor/delete/{id}")
-    public void delete(@PathVariable long id){
-        processorService.deleteProcessor(id);
-    }
-
     @Autowired
     public void setProcessorService(ProcessorService processorService) {
         this.processorService = processorService;
     }
+
+    @GetMapping(value = "/db/processors")
+    public List<Processor> getAll() {
+        return processorService.getAllProcessor();
+    }
+
+    @GetMapping("/db/processors/{id}")
+    public Processor get(@PathVariable long id){
+        return processorService.getProcessor(id);
+    }
+
+    @PostMapping(value = "/db/processors")
+    public void add(@RequestBody Processor processor){
+        processorService.addProcessor(processor);
+    }
+
+    @PutMapping(value = "/db/processors/{id}")
+    public void edit(@PathVariable long id, @RequestBody Processor processor){
+        processor.setId(id);
+        processorService.editProcessor(processor);
+    }
+
+    @DeleteMapping(value = "/db/processors/{id}")
+    public void delete(@PathVariable long id){
+        processorService.deleteProcessor(id);
+    }
+
 }

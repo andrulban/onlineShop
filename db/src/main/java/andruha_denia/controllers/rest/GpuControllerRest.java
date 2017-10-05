@@ -14,35 +14,38 @@ import java.util.List;
 
 @RestController
 public class GpuControllerRest {
+
     private GpuService gpuService;
-
-    @RequestMapping(value = "/db/gpu/getAll", method = RequestMethod.GET)
-    public List<Gpu> getAll() {
-        return gpuService.getAllGpu();
-    }
-
-    @RequestMapping("/db/gpu/get/{id}")
-    public Gpu get(@PathVariable long id){
-        return gpuService.getGpu(id);
-    }
-
-    @RequestMapping(value = "/db/gpu/add", method = RequestMethod.POST)
-    public void add(@RequestBody Gpu gpu){
-        gpuService.addGpu(gpu);
-    }
-
-    @RequestMapping(value = "/db/gpu/edit", method = RequestMethod.POST)
-    public void edit(@RequestBody Gpu gpu){
-        gpuService.editGpu(gpu);
-    }
-
-    @RequestMapping(value = "/db/gpu/delete/{id}")
-    public void delete(@PathVariable long id){
-        gpuService.deleteGpu(id);
-    }
 
     @Autowired
     public void setGpuService(GpuService gpuService) {
         this.gpuService = gpuService;
     }
-}
+
+    @GetMapping(value = "/db/gpus")
+    public List<Gpu> getAll() {
+        return gpuService.getAllGpu();
+    }
+
+    @GetMapping("/db/gpus/{id}")
+    public Gpu get(@PathVariable long id){
+        return gpuService.getGpu(id);
+    }
+
+    @PostMapping(value = "/db/gpus")
+    public void add(@RequestBody Gpu gpu){
+        gpuService.addGpu(gpu);
+    }
+
+    @PutMapping(value = "/db/gpus/{id}")
+    public void edit(@PathVariable long id, @RequestBody Gpu gpu){
+        gpu.setId(id);
+        gpuService.editGpu(gpu);
+    }
+
+    @DeleteMapping(value = "/db/gpus/{id}")
+    public void delete(@PathVariable long id){
+        gpuService.deleteGpu(id);
+    }
+
+    }
