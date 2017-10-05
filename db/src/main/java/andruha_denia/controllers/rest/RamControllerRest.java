@@ -14,35 +14,37 @@ import java.util.List;
 
 @RestController
 public class RamControllerRest {
+
     private RamService ramService;
-
-    @RequestMapping(value = "/db/ram/getAll", method = RequestMethod.GET)
-    public List<Ram> getAll() {
-        return ramService.getAllRam();
-    }
-
-    @RequestMapping("/db/ram/get/{id}")
-    public Ram get(@PathVariable long id){
-        return ramService.getRam(id);
-    }
-
-    @RequestMapping(value = "/db/ram/add", method = RequestMethod.POST)
-    public void add(@RequestBody Ram ram){
-        ramService.addRam(ram);
-    }
-
-    @RequestMapping(value = "/db/ram/edit", method = RequestMethod.POST)
-    public void edit(@RequestBody Ram ram){
-        ramService.editRam(ram);
-    }
-
-    @RequestMapping(value = "/db/ram/delete/{id}")
-    public void delete(@PathVariable long id){
-        ramService.deleteRam(id);
-    }
 
     @Autowired
     public void setRamService(RamService ramService) {
         this.ramService = ramService;
     }
+
+    @GetMapping(value = "/db/rams")
+    public List<Ram> getAll() {
+        return ramService.getAllRam();
+    }
+
+    @GetMapping("/db/rams/{id}")
+    public Ram get(@PathVariable long id){
+        return ramService.getRam(id);
+    }
+
+    @PostMapping(value = "/db/rams")
+    public void add(@RequestBody Ram ram){
+        ramService.addRam(ram);
+    }
+
+    @PutMapping(value = "/db/rams/{id}")
+    public void edit(@PathVariable long id, @RequestBody Ram ram){
+        ramService.editRam(ram);
+    }
+
+    @DeleteMapping(value = "/db/rams/{id}")
+    public void delete(@PathVariable long id){
+        ramService.deleteRam(id);
+    }
+
 }

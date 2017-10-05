@@ -14,35 +14,38 @@ import java.util.List;
 
 @RestController
 public class OutputControllerRest {
+
     private OutputService outputService;
-
-    @RequestMapping(value = "/db/output/getAll", method = RequestMethod.GET)
-    public List<Output> getAll() {
-        return outputService.getAllOutput();
-    }
-
-    @RequestMapping("/db/output/get/{id}")
-    public Output get(@PathVariable long id){
-        return outputService.getOutput(id);
-    }
-
-    @RequestMapping(value = "/db/output/add", method = RequestMethod.POST)
-    public void add(@RequestBody Output output){
-        outputService.addOutput(output);
-    }
-
-    @RequestMapping(value = "/db/output/edit", method = RequestMethod.POST)
-    public void edit(@RequestBody Output output){
-        outputService.editOutput(output);
-    }
-
-    @RequestMapping(value = "/db/output/delete/{id}")
-    public void delete(@PathVariable long id){
-        outputService.deleteOutput(id);
-    }
 
     @Autowired
     public void setOutputService(OutputService outputService) {
         this.outputService = outputService;
     }
+
+    @GetMapping(value = "/db/outputs")
+    public List<Output> getAll() {
+        return outputService.getAllOutput();
+    }
+
+    @GetMapping("/db/outputs/{id}")
+    public Output get(@PathVariable long id){
+        return outputService.getOutput(id);
+    }
+
+    @PostMapping(value = "/db/outputs")
+    public void add(@RequestBody Output output){
+        outputService.addOutput(output);
+    }
+
+    @PutMapping(value = "/db/outputs/{id}")
+    public void edit(@PathVariable long id, @RequestBody Output output){
+        output.setId(id);
+        outputService.editOutput(output);
+    }
+
+    @DeleteMapping(value = "/db/outputs/{id}")
+    public void delete(@PathVariable long id){
+        outputService.deleteOutput(id);
+    }
+
 }

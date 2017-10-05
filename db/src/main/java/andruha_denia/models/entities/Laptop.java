@@ -36,6 +36,8 @@ public class Laptop {
     private String kit;
     @Column
     private String advancedInfo;
+    @Column
+    private String image;
 
     @Enumerated(EnumType.STRING)
     private OS os;
@@ -251,5 +253,13 @@ public class Laptop {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
