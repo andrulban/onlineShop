@@ -3,6 +3,7 @@ package andruha_denia.controllers.rest;
 import andruha_denia.models.entities.Battery;
 import andruha_denia.services.interfaces.BatteryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -22,27 +23,28 @@ public class BatteryControllerRest {
         this.batteryService = batteryService;
     }
 
-    @RequestMapping(value = "/db/battery/getAll", method = RequestMethod.GET)
+    @GetMapping(value = "/db/batteries")
     public List<Battery> getAll() {
         return batteryService.getAllBattery();
     }
 
-    @RequestMapping("/db/battery/get/{id}")
+    @GetMapping("/db/batteries/{id}")
     public Battery get(@PathVariable long id){
         return batteryService.getBattery(id);
     }
 
-    @RequestMapping(value = "/db/battery/add", method = RequestMethod.POST)
+    @PostMapping(value = "/db/batteries/add", consumes = MediaType.APPLICATION_JSON_VALUE)
     public void add(@RequestBody Battery battery){
         batteryService.addBattery(battery);
     }
 
-    @RequestMapping(value = "/db/battery/edit", method = RequestMethod.POST)
-    public void edit(@RequestBody Battery battery){
+    @PutMapping(value = "/db/batteries/{id}", consumes = MediaType.APPLICATION_JSON_VALUE)
+    public void edit(@PathVariable long id, @RequestBody Battery battery){
+        battery.setId(id);
         batteryService.editBattery(battery);
     }
 
-    @RequestMapping(value = "/db/battery/delete/id", method = RequestMethod.POST)
+    @DeleteMapping(value = "/db/batteries/{id}")
     public void delete(@PathVariable long id){
         batteryService.deleteBattery(id);
     }

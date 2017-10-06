@@ -14,35 +14,38 @@ import java.util.List;
 
 @RestController
 public class LaptopControllerRest {
+
     private LaptopService laptopService;
-
-    @RequestMapping(value = "/db/laptop/getAll", method = RequestMethod.GET)
-    public List<Laptop> getAll() {
-        return laptopService.getAllLaptop();
-    }
-
-    @RequestMapping("/db/laptop/get/{id}")
-    public Laptop get(@PathVariable long id){
-        return laptopService.getLaptop(id);
-    }
-
-    @RequestMapping(value = "/db/laptop/add", method = RequestMethod.POST)
-    public void add(@RequestBody Laptop laptop){
-        laptopService.add(laptop);
-    }
-
-    @RequestMapping(value = "/db/laptop/edit", method = RequestMethod.POST)
-    public void edit(@RequestBody Laptop laptop){
-        laptopService.edit(laptop);
-    }
-
-    @RequestMapping(value = "/db/laptop/delete/{id}")
-    public void delete(@PathVariable long id){
-        laptopService.deleteLaptop(id);
-    }
 
     @Autowired
     public void setLaptopService(LaptopService laptopService) {
         this.laptopService = laptopService;
     }
+
+    @GetMapping(value = "/db/laptops")
+    public List<Laptop> getAll() {
+        return laptopService.getAllLaptop();
+    }
+
+    @GetMapping("/db/laptops/{id}")
+    public Laptop get(@PathVariable long id){
+        return laptopService.getLaptop(id);
+    }
+
+    @PostMapping(value = "/db/laptops")
+    public void add(@RequestBody Laptop laptop){
+        laptopService.add(laptop);
+    }
+
+    @PutMapping(value = "/db/laptops/{id}")
+    public void edit(@PathVariable long id, @RequestBody Laptop laptop){
+        laptop.setId(id);
+        laptopService.edit(laptop);
+    }
+
+    @DeleteMapping(value = "/db/laptops/{id}")
+    public void delete(@PathVariable long id){
+        laptopService.deleteLaptop(id);
+    }
+
 }

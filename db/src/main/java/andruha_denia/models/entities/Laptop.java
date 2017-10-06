@@ -50,6 +50,8 @@ public class Laptop implements DTOConvertible {
 
     @Column
     private String advancedInfo;
+    @Column
+    private String image;
 
     @Enumerated(EnumType.STRING)
     private OS os;
@@ -314,5 +316,13 @@ public class Laptop implements DTOConvertible {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }
