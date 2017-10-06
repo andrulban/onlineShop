@@ -27,7 +27,7 @@ public class Drive implements DTOConvertible {
         DTO resultDTO = new DTO();
 
         resultDTO.setId(id);
-        resultDTO.addField("driveType",driveType.toString());
+        resultDTO.addField("driveType",driveType != null ? driveType.toString() : "");
         resultDTO.addField("size",""+size);
 
         return resultDTO;

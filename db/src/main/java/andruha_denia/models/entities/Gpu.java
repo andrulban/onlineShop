@@ -30,8 +30,8 @@ public class Gpu implements DTOConvertible {
         DTO resultDTO = new DTO();
 
         resultDTO.setId(id);
-        resultDTO.addField("gpuType",gpuType.toString());
-        resultDTO.addField("name",name);
+        resultDTO.addField("gpuType",gpuType != null ? gpuType.toString() : "");
+        resultDTO.addField("name",name != null ? name : "");
         resultDTO.addField("ramAmount",""+ramAmount);
 
         return resultDTO;

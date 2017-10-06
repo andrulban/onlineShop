@@ -27,8 +27,8 @@ public class Battery implements DTOConvertible {
         DTO resultDTO = new DTO();
 
         resultDTO.setId(id);
-        resultDTO.addField("batteryType",batteryType.toString());
-        resultDTO.addField("description",description);
+        resultDTO.addField("batteryType", batteryType != null ? batteryType.toString() : "");
+        resultDTO.addField("description", description != null ? description : "");
 
         return resultDTO;
     }

@@ -1,13 +1,14 @@
 package andruha_denia.models.entities;
 
 import andruha_denia.models.enums.BatteryType;
-import andruha_denia.models.enums.ConnectionAdapterType;
 import andruha_denia.utils.DTOConvertible;
 import core.cross_service.dto.entity.DTO;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
+
+import java.util.Map;
 
 /**
  * @author azozello
@@ -35,9 +36,45 @@ public class BatteryTest {
     }
 
     @Test
-    public void batteryTest(){
-        logger.info("Battery test started");
-        Assert.assertEquals(expectedDTO,battery.convert());
-        logger.info("Battery test passed");
+    public void batteryEqualityTest(){
+        logger.info("Battery common test started");
+        Assert.assertEquals(expectedDTO, battery.convert());
+        logger.info("Battery common test passed");
+    }
+
+    @Test
+    public void batteryNotEqualityTest(){
+        expectedDTO.setId(1448);
+        logger.info("Battery common test started");
+        Assert.assertNotEquals(expectedDTO, battery.convert());
+        logger.info("Battery common test passed");
+    }
+
+    @Test
+    public void batteryNotNullTest(){
+        battery = new Battery();
+        DTO expectedNotNullDTO = battery.convert();
+
+        logger.info("Battery not null test started");
+
+        for (Map.Entry<String, String> entity : expectedNotNullDTO.getFields().entrySet()){
+            Assert.assertNotNull(entity.getValue());
+        }
+
+        logger.info("Battery not null test passed");
+    }
+
+    @Test
+    public void batteryNullTest(){
+        battery = new Battery();
+        battery.setId(228);
+
+        DTO DTOWithNulls = battery.convert();
+
+        logger.info("Battery null test started");
+
+        Assert.assertEquals(DTOWithNulls, battery.convert());
+
+        logger.info("Battery null test passed");
     }
 }

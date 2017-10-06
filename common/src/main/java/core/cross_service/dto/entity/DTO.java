@@ -29,10 +29,6 @@ public class DTO {
         return fields;
     }
 
-    public void setFields(Map<String, String> fields) {
-        this.fields = fields;
-    }
-
     public void addField(String name, String value){
         fields.put(name, value);
     }
@@ -51,6 +47,8 @@ public class DTO {
             return false;
         }
         final DTO anotherDTO = (DTO) o;
+
+        if (anotherDTO.getId()!=id) return false;
 
         Set<String> thisValues = new HashSet<>(fields.values());
         Set<String> anotherValues = new HashSet<>(anotherDTO.getFields().values());

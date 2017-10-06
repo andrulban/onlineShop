@@ -31,7 +31,7 @@ public class Ram implements DTOConvertible {
 
         resultDTO.setId(id);
         resultDTO.addField("size",""+size);
-        resultDTO.addField("ramType",ramType.toString());
+        resultDTO.addField("ramType",ramType != null ? ramType.toString() : "");
         resultDTO.addField("megaHertz",""+megaHertz);
 
         return resultDTO;

@@ -27,7 +27,7 @@ public class ConnectionAdapter implements DTOConvertible{
         DTO resultDTO = new DTO();
 
         resultDTO.setId(id);
-        resultDTO.addField("connectionAdapterType",connectionAdapterType.toString());
+        resultDTO.addField("connectionAdapterType",connectionAdapterType != null ? connectionAdapterType.toString() : "");
         resultDTO.addField("version",""+version);
 
         return resultDTO;

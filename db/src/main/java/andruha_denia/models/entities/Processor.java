@@ -35,7 +35,7 @@ public class Processor implements DTOConvertible {
         DTO resultDTO = new DTO();
 
         resultDTO.setId(id);
-        resultDTO.addField("name",name);
+        resultDTO.addField("name",name != null ? name : "");
         resultDTO.addField("coresAmount",""+coresAmount);
         resultDTO.addField("minGHertz",""+minGHertz);
         resultDTO.addField("maxGHertz",""+maxGHertz);

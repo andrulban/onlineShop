@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 @Controller
 public class IndexController {
     private final String URL_SECURED = "https://localhost:8043/test/secured";
-    private final String URL_UNSECURED = "https://localhost:8043/test/unsecured";
+    private final String URL_UNSECURED = "https://localhost:8043/test/unsecured/uns";
 
     @Autowired
     private RestTemplate template;

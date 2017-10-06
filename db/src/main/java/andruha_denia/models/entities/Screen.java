@@ -35,9 +35,9 @@ public class Screen implements DTOConvertible{
 
         resultDTO.setId(id);
         resultDTO.addField("diagonal",""+diagonal);
-        resultDTO.addField("resolution",resolution);
-        resultDTO.addField("resolutionType",resolutionType.toString());
-        resultDTO.addField("screenType",screenType.toString());
+        resultDTO.addField("resolution", resolution != null ? resolution : "");
+        resultDTO.addField("resolutionType", resolutionType != null ? resolutionType.toString() : "");
+        resultDTO.addField("screenType", screenType != null ? screenType.toString() : "");
 
         return resultDTO;
     }

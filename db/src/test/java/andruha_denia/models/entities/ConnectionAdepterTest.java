@@ -9,6 +9,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Map;
+
 /**
  * @author azozello
  * @since 05.10.17.
@@ -34,9 +36,45 @@ public class ConnectionAdepterTest {
     }
 
     @Test
-    public void ConnectionAdapterTest(){
+    public void ConnectionAdapterCommonTest(){
         logger.info("ConnectionAdapter test started");
         Assert.assertEquals(expectedDTO, connectionAdapter.convert());
         logger.info("ConnectionAdapter test passed");
+    }
+
+    @Test
+    public void connectionAdapterNotEqualityTest(){
+        expectedDTO.addField("NotCaField","Something not important");
+        logger.info("ConnectionAdapter common test started");
+        Assert.assertNotEquals(expectedDTO, connectionAdapter.convert());
+        logger.info("ConnectionAdapter common test passed");
+    }
+
+    @Test
+    public void connectionAdapterNotNullTest(){
+        connectionAdapter = new ConnectionAdapter();
+        DTO expectedNotNullDTO = connectionAdapter.convert();
+
+        logger.info("ConnectionAdapter not null test started");
+
+        for (Map.Entry<String, String> entity : expectedNotNullDTO.getFields().entrySet()){
+            Assert.assertNotNull(entity.getValue());
+        }
+
+        logger.info("ConnectionAdapter not null test passed");
+    }
+
+    @Test
+    public void connectionAdapterNullTest(){
+        connectionAdapter = new ConnectionAdapter();
+        connectionAdapter.setId(228);
+
+        DTO DTOWithNulls = connectionAdapter.convert();
+
+        logger.info("ConnectionAdapter null test started");
+
+        Assert.assertEquals(DTOWithNulls, connectionAdapter.convert());
+
+        logger.info("ConnectionAdapter null test passed");
     }
 }

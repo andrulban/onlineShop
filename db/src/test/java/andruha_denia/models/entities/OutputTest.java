@@ -7,6 +7,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Map;
+
 /**
  * @author azozello
  * @since 05.10.17.
@@ -34,5 +36,19 @@ public class OutputTest {
         logger.info("OutPut test started");
         Assert.assertEquals(expectedDTO, output.convert());
         logger.info("OutPut test passed");
+    }
+
+    @Test
+    public void OutputNullTest(){
+        Output output = new Output();
+        DTO expectedNotNullDTO = output.convert();
+
+        logger.info("Output null test started");
+
+        for (Map.Entry<String, String> entity : expectedNotNullDTO.getFields().entrySet()){
+            Assert.assertNotNull(entity.getValue());
+        }
+
+        logger.info("Output null test passed");
     }
 }

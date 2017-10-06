@@ -6,6 +6,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Map;
+
 /**
  * @author azozello
  * @since 05.10.17.
@@ -39,5 +41,19 @@ public class ProcessorTest {
         logger.info("Processor test started");
         Assert.assertEquals(expectedDTO, processor.convert());
         logger.info("Processor test passed");
+    }
+
+    @Test
+    public void ProcessorNullTest(){
+        Processor processor = new Processor();
+        DTO expectedNotNullDTO = processor.convert();
+
+        logger.info("Processor null test started");
+
+        for (Map.Entry<String, String> entity : expectedNotNullDTO.getFields().entrySet()){
+            Assert.assertNotNull(entity.getValue());
+        }
+
+        logger.info("Processor null test passed");
     }
 }

@@ -7,6 +7,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Map;
+
 /**
  * @author azozello
  * @since 05.10.17.
@@ -36,5 +38,19 @@ public class DriveTest {
         logger.info("Drive test started");
         Assert.assertEquals(expectedDTO, drive.convert());
         logger.info("Drive test passed");
+    }
+
+    @Test
+    public void DriveNullTest(){
+        Drive drive = new Drive();
+        DTO expectedNotNullDTO = drive.convert();
+
+        logger.info("Drive null test started");
+
+        for (Map.Entry<String, String> entity : expectedNotNullDTO.getFields().entrySet()){
+            Assert.assertNotNull(entity.getValue());
+        }
+
+        logger.info("Drive null test passed");
     }
 }

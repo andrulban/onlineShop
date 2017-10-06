@@ -7,6 +7,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
+import java.util.Map;
+
 /**
  * @author azozello
  * @since 05.10.17.
@@ -38,5 +40,19 @@ public class RamTest {
         logger.info("Ram test started");
         Assert.assertEquals(expectedDTO, ram.convert());
         logger.info("Ram test passed");
+    }
+
+    @Test
+    public void RamNullTest(){
+        Ram ram = new Ram();
+        DTO expectedNotNullDTO = ram.convert();
+
+        logger.info("RAM null test started");
+
+        for (Map.Entry<String, String> entity : expectedNotNullDTO.getFields().entrySet()){
+            Assert.assertNotNull(entity.getValue());
+        }
+
+        logger.info("RAM null test passed");
     }
 }

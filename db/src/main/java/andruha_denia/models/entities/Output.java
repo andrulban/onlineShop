@@ -24,7 +24,7 @@ public class Output implements DTOConvertible{
         DTO resultDTO = new DTO();
 
         resultDTO.setId(id);
-        resultDTO.addField("outPutType",outPutType.toString());
+        resultDTO.addField("outPutType",outPutType != null ? outPutType.toString() : "");
 
         return resultDTO;
     }

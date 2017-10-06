@@ -8,6 +8,7 @@ import core.cross_service.dto.entity.DTO;
 import core.cross_service.dto.entity.LaptopDTO;
 
 import javax.persistence.*;
+import java.util.HashSet;
 import java.util.Set;
 
 /**
@@ -66,6 +67,7 @@ public class Laptop implements DTOConvertible {
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "screen_id", referencedColumnName = "id")
     private Screen screen;
+
     @ManyToOne(fetch = FetchType.EAGER)
     @JoinColumn(name = "ram_id", referencedColumnName = "id")
     private Ram ram;
@@ -96,7 +98,46 @@ public class Laptop implements DTOConvertible {
 
     @Override
     public DTO convert() {
-        return new LaptopDTO();
+        LaptopDTO resultDTO = new LaptopDTO();
+
+        Set<DTO> drives = new HashSet<>();
+        Set<DTO> gpus = new HashSet<>();
+        Set<DTO> connectionAdapters = new HashSet<>();
+        Set<DTO> output = new HashSet<>();
+
+        if (drive != null) drive.forEach(v -> drives.add(v.convert()));
+        if (gpu != null) gpu.forEach(v -> gpus.add(v.convert()));
+        if (connectionAdapter != null) connectionAdapter.forEach(v -> connectionAdapters.add(v.convert()));
+        if (outputs != null) outputs.forEach(v -> output.add(v.convert()));
+
+        resultDTO.setId(id);
+
+        resultDTO.setBattery(battery != null ? battery.convert() : new DTO());
+        resultDTO.setBattery(ram != null ? ram.convert() : new DTO());
+        resultDTO.setBattery(processor != null ? processor.convert() : new DTO());
+        resultDTO.setBattery(screen != null ? screen.convert() : new DTO());
+
+        resultDTO.setGranteeMonth(granteeMonth);
+        resultDTO.setHeight(height);
+        resultDTO.setKeyBoardIlluminated(isKeyBoardIlluminated);
+        resultDTO.setLength(length);
+        resultDTO.setRamSlotsAmount(ramSlotsAmount);
+        resultDTO.setWeight(weight);
+        resultDTO.setWidth(width);
+
+        resultDTO.addField("name", name != null ? name : "");
+        resultDTO.addField("kit", kit != null ? kit : "");
+        resultDTO.addField("advancedInfo", advancedInfo != null ? advancedInfo : "");
+        resultDTO.addField("os", os != null ? os.toString() : "");
+        resultDTO.addField("colour", colour != null ? colour.toString() : "");
+        resultDTO.addField("manufacturer", manufacturer != null ? manufacturer.toString() : "");
+
+        resultDTO.setDrive(drives);
+        resultDTO.setGpu(gpus);
+        resultDTO.setConnectionAdapter(connectionAdapters);
+        resultDTO.setOutputs(output);
+
+        return resultDTO;
     }
 
     public long getId() {
