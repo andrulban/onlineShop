@@ -10,6 +10,7 @@ import java.util.Set;
  * @since 04.10.17.
  */
 public class DTO {
+
     private long id;
     private Map<String, String> fields;
 

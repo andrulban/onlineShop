@@ -21,8 +21,7 @@ public class LaptopTest {
 
     @Before
     public void setUp(){
-        logger.setLevel(Level.INFO);
-        Logger.getRootLogger().setLevel(Level.INFO);
+        logger.setLevel(Level.DEBUG);
 
         expectedDTO = new LaptopDTO();
 
@@ -45,7 +44,7 @@ public class LaptopTest {
 
         /**
          * Uses for debug.
-         * @bug: After changing logging level to Level.Info messages with Level.Debug still are still logging.
+         * @bug: After changing logging level to Level.Info messages with Level.Debug are still logging.
          * TODO: Fix the bug.
          */
         printLaptopValues();
