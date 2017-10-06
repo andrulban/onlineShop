@@ -2,6 +2,8 @@ package andruha_denia.models.entities;
 
 import andruha_denia.models.enums.ResolutionType;
 import andruha_denia.models.enums.ScreenType;
+import andruha_denia.utils.DTOConvertible;
+import core.cross_service.dto.entity.DTO;
 
 import javax.persistence.*;
 
@@ -10,20 +12,34 @@ import javax.persistence.*;
  * @since 31.08.17.
  */
 @Entity
-public class Screen {
+public class Screen implements DTOConvertible{
     @Id
     @GeneratedValue
     private long id;
+
     @Column
     private float diagonal;
+
     @Column
     private String resolution;
+
     @Enumerated(EnumType.STRING)
     private ResolutionType resolutionType;
+
     @Enumerated(EnumType.STRING)
     private ScreenType screenType;
 
-    public Screen() {
+    @Override
+    public DTO convert() {
+        DTO resultDTO = new DTO();
+
+        resultDTO.setId(id);
+        resultDTO.addField("diagonal",""+diagonal);
+        resultDTO.addField("resolution", resolution != null ? resolution : "");
+        resultDTO.addField("resolutionType", resolutionType != null ? resolutionType.toString() : "");
+        resultDTO.addField("screenType", screenType != null ? screenType.toString() : "");
+
+        return resultDTO;
     }
 
     public long getId() {

@@ -1,6 +1,8 @@
 package andruha_denia.models.entities;
 
 import andruha_denia.models.enums.ConnectionAdapterType;
+import andruha_denia.utils.DTOConvertible;
+import core.cross_service.dto.entity.DTO;
 
 import javax.persistence.*;
 
@@ -9,17 +11,26 @@ import javax.persistence.*;
  * @since 31.08.17.
  */
 @Entity
-public class ConnectionAdapter {
+public class ConnectionAdapter implements DTOConvertible{
     @Id
     @GeneratedValue
     private long id;
 
     @Enumerated(EnumType.STRING)
     private ConnectionAdapterType connectionAdapterType;
+
     @Column
     private float version;
 
-    public ConnectionAdapter() {
+    @Override
+    public DTO convert() {
+        DTO resultDTO = new DTO();
+
+        resultDTO.setId(id);
+        resultDTO.addField("connectionAdapterType",connectionAdapterType != null ? connectionAdapterType.toString() : "");
+        resultDTO.addField("version",""+version);
+
+        return resultDTO;
     }
 
     public long getId() {

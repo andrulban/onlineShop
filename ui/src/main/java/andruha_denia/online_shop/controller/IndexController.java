@@ -10,7 +10,7 @@ import org.springframework.web.client.RestTemplate;
 @Controller
 public class IndexController {
     private final String URL_SECURED = "https://localhost:8043/test/secured";
-    private final String URL_UNSECURED = "https://localhost:8043/test/unsecured";
+    private final String URL_UNSECURED = "https://localhost:8043/test/unsecured/uns";
 
     @Autowired
     private RestTemplate template;
@@ -45,7 +45,7 @@ public class IndexController {
         String restData = "";
         switch (flag){
             case 1:
-                restData = template.getForObject(URL_SECURED,String.class);
+                restData = template.getForObject(URL_SECURED, String.class);
                 break;
             case 0:
                 restData = template.getForObject(URL_UNSECURED, String.class);

@@ -1,6 +1,8 @@
 package andruha_denia.models.entities;
 
 import andruha_denia.models.enums.GpuType;
+import andruha_denia.utils.DTOConvertible;
+import core.cross_service.dto.entity.DTO;
 
 import javax.persistence.*;
 
@@ -9,18 +11,30 @@ import javax.persistence.*;
  * @since 31.08.17.
  */
 @Entity
-public class Gpu {
+public class Gpu implements DTOConvertible {
     @Id
     @GeneratedValue
     private long id;
+
     @Enumerated(EnumType.STRING)
     private GpuType gpuType;
+
     @Column
     private String name;
+
     @Column
     private int ramAmount;
 
-    public Gpu() {
+    @Override
+    public DTO convert() {
+        DTO resultDTO = new DTO();
+
+        resultDTO.setId(id);
+        resultDTO.addField("gpuType",gpuType != null ? gpuType.toString() : "");
+        resultDTO.addField("name",name != null ? name : "");
+        resultDTO.addField("ramAmount",""+ramAmount);
+
+        return resultDTO;
     }
 
     public long getId() {

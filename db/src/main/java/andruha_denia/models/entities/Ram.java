@@ -1,29 +1,40 @@
 package andruha_denia.models.entities;
 
 import andruha_denia.models.enums.RamType;
+import andruha_denia.utils.DTOConvertible;
+import core.cross_service.dto.entity.DTO;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 /**
  * @author andrusha
  * @since 31.08.17.
  */
 @Entity
-public class Ram {
+public class Ram implements DTOConvertible {
     @Id
     @GeneratedValue
     private long id;
+
     @Column
     private int size;
-    @Column
+
+    @Enumerated(EnumType.STRING)
     private RamType ramType;
+
     @Column
     private int megaHertz;
 
-    public Ram() {
+    @Override
+    public DTO convert() {
+        DTO resultDTO = new DTO();
+
+        resultDTO.setId(id);
+        resultDTO.addField("size",""+size);
+        resultDTO.addField("ramType",ramType != null ? ramType.toString() : "");
+        resultDTO.addField("megaHertz",""+megaHertz);
+
+        return resultDTO;
     }
 
     public long getId() {
