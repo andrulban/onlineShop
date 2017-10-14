@@ -2,6 +2,7 @@ package andruha_denia.controllers.rest;
 
 import andruha_denia.models.entities.Gpu;
 import andruha_denia.services.interfaces.GpuService;
+import core.cross_service.dto.entity.DTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,14 +34,14 @@ public class GpuControllerRest {
     }
 
     @PostMapping(value = "/db/gpus")
-    public void add(@RequestBody Gpu gpu){
-        gpuService.addGpu(gpu);
+    public void add(@RequestBody DTO dto){
+        gpuService.addGpu(Gpu.revert(dto));
     }
 
     @PutMapping(value = "/db/gpus/{id}")
-    public void edit(@PathVariable long id, @RequestBody Gpu gpu){
-        gpu.setId(id);
-        gpuService.editGpu(gpu);
+    public void edit(@PathVariable long id, @RequestBody DTO dto){
+        dto.setId(id);
+        gpuService.editGpu(Gpu.revert(dto));
     }
 
     @DeleteMapping(value = "/db/gpus/{id}")
@@ -48,4 +49,4 @@ public class GpuControllerRest {
         gpuService.deleteGpu(id);
     }
 
-    }
+}

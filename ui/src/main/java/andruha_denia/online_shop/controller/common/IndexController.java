@@ -1,4 +1,4 @@
-package andruha_denia.online_shop.controller;
+package andruha_denia.online_shop.controller.common;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -15,8 +15,16 @@ public class IndexController {
     @Autowired
     private RestTemplate template;
 
+    @RequestMapping("/login")
+    public String login(){
+        return "pages/login";
+    }
+
     @RequestMapping("/")
-    public String home(){
+    public String home(Model model){
+        String userName = "Electronic Store";
+        model.addAttribute("gay","Your stores. Your place.");
+        model.addAttribute("user",userName);
         return "web/index";
     }
 

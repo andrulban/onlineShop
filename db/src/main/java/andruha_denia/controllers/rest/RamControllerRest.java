@@ -2,6 +2,7 @@ package andruha_denia.controllers.rest;
 
 import andruha_denia.models.entities.Ram;
 import andruha_denia.services.interfaces.RamService;
+import core.cross_service.dto.entity.DTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,13 +34,14 @@ public class RamControllerRest {
     }
 
     @PostMapping(value = "/db/rams")
-    public void add(@RequestBody Ram ram){
-        ramService.addRam(ram);
+    public void add(@RequestBody DTO dto){
+        ramService.addRam(Ram.revert(dto));
     }
 
     @PutMapping(value = "/db/rams/{id}")
-    public void edit(@PathVariable long id, @RequestBody Ram ram){
-        ramService.editRam(ram);
+    public void edit(@PathVariable long id, @RequestBody DTO dto){
+        dto.setId(id);
+        ramService.editRam(Ram.revert(dto));
     }
 
     @DeleteMapping(value = "/db/rams/{id}")

@@ -1,7 +1,9 @@
 package andruha_denia.controllers.rest;
 
+import andruha_denia.models.entities.Battery;
 import andruha_denia.models.entities.ConnectionAdapter;
 import andruha_denia.services.interfaces.ConnectionAdapterService;
+import core.cross_service.dto.entity.DTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,14 +35,14 @@ public class ConnectionAdapterControllerRest {
     }
 
     @PostMapping(value = "/db/connection_adapters")
-    public void add(@RequestBody ConnectionAdapter connectionAdapter) {
-        connectionAdapterService.addConnectionAdapter(connectionAdapter);
+    public void add(@RequestBody DTO dto) {
+        connectionAdapterService.addConnectionAdapter(ConnectionAdapter.revert(dto));
     }
 
     @PutMapping(value = "/db/connection_adapters/{id}")
-    public void edit(@PathVariable long id, @RequestBody ConnectionAdapter connectionAdapter) {
-        connectionAdapter.setId(id);
-        connectionAdapterService.editConnectionAdapter(connectionAdapter);
+    public void edit(@PathVariable long id, @RequestBody DTO dto) {
+        dto.setId(id);
+        connectionAdapterService.editConnectionAdapter(ConnectionAdapter.revert(dto));
     }
 
     @DeleteMapping(value = "/db/connection_adapters/{id}")

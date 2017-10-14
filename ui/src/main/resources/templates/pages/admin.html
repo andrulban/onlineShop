@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <title>Admin</title>
+</head>
+<script>
+    function create() {
+        var d = $('#name').val();
+        var t = $('#type').val();
+
+        var batteryDTO = {"id":0,"fields":{"description":d,"batteryType":t}};
+
+        alert(batteryDTO.fields);
+
+        $.ajax({
+            type: "POST",
+            url: "/admin/battery/add",
+            data: batteryDTO,
+            success: alert("Success"),
+            dataType: "json"
+        });
+    }
+</script>
+<body>
+<form action="/admin/battery/add" method="post">
+    <div><label>Description:     <input type="text" name="des"/></label></div>
+    <div><label>Type:            <input type="text" name="type"/></label></div>
+    <div><input type="submit" value="Create"/></div>
+</form>
+<h1>Create Battery</h1>
+Name:
+<input type="text" id="name"/>
+Type: <select id="type">
+    <option>PORTABLE</option>
+    <option>UNPORTABLE</option>
+</select> <button id="ok" onclick="create()">Create</button>
+</body>
+</html>

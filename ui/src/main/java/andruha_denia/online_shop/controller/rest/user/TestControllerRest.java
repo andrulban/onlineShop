@@ -1,4 +1,4 @@
-package andruha_denia.online_shop.controller;
+package andruha_denia.online_shop.controller.rest.user;
 
 import core.cross_service.dto.entity.DTO;
 import org.apache.log4j.Logger;
@@ -14,7 +14,8 @@ import java.util.Map;
  * @since 05.10.17.
  */
 
-@RestController()
+@RestController
+@RequestMapping("/test")
 public class TestControllerRest {
 
     private static final Logger LOG = Logger.getLogger(TestControllerRest.class);
@@ -22,7 +23,7 @@ public class TestControllerRest {
     private final String URL_DTO = "https://localhost:8043/test/unsecured/";
 
     @Autowired
-    RestTemplate template;
+    private RestTemplate template;
 
     @RequestMapping("/map")
     public Map<String, String> testMap(){
@@ -32,7 +33,7 @@ public class TestControllerRest {
 
     @RequestMapping("/dto")
     public DTO testDto(){
-        DTO dto = template.getForObject(URL_DTO, DTO.class);
+        DTO dto = template.getForObject(URL_DTO+"dto", DTO.class);
         try {
             LOG.info(dto.getId());
             for (Map.Entry<String, String> entry : dto.getFields().entrySet()){

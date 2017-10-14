@@ -1,6 +1,8 @@
 package andruha_denia.models.entities;
 
+import andruha_denia.models.enums.GpuType;
 import andruha_denia.models.enums.RamType;
+import andruha_denia.models.exceptions.WrongSourceDTO;
 import andruha_denia.utils.DTOConvertible;
 import core.cross_service.dto.entity.DTO;
 
@@ -24,6 +26,26 @@ public class Ram implements DTOConvertible {
 
     @Column
     private int megaHertz;
+
+    public static Ram revert(DTO sourceDTO){
+        Ram result = new Ram();
+
+        try {
+            result.setId(sourceDTO.getId());
+            result.setRamType(RamType.valueOf
+                    (sourceDTO.getFields().get("ramType")));
+            result.setSize(new Integer(sourceDTO.getFields().get("size")));
+            result.setMegaHertz(new Integer(sourceDTO.getFields().get("megaHertz")));
+        } catch (NullPointerException npe){
+            throw new WrongSourceDTO("Required field was not found");
+        } catch (NumberFormatException nfe){
+            throw new WrongSourceDTO("Field 'version' has illegal value ");
+        }  catch (IllegalArgumentException iae){
+            throw new WrongSourceDTO("Field 'connectionAdapterType' has illegal value ");
+        }
+
+        return result;
+    }
 
     @Override
     public DTO convert() {

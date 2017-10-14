@@ -2,6 +2,7 @@ package andruha_denia.controllers.rest;
 
 import andruha_denia.models.entities.Screen;
 import andruha_denia.services.interfaces.ScreenService;
+import core.cross_service.dto.entity.DTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,14 +34,14 @@ public class ScreenControllerRest {
     }
 
     @PostMapping(value = "/db/screens")
-    public void add(@RequestBody Screen screen){
-        screenService.addScreen(screen);
+    public void add(@RequestBody DTO dto){
+        screenService.addScreen(Screen.revert(dto));
     }
 
     @PutMapping(value = "/db/screens/{id}")
-    public void edit(@PathVariable long id, @RequestBody Screen screen){
-        screen.setId(id);
-        screenService.editScreen(screen);
+    public void edit(@PathVariable long id, @RequestBody DTO dto){
+        dto.setId(id);
+        screenService.editScreen(Screen.revert(dto));
     }
 
     @DeleteMapping(value = "/db/screens/{id}")

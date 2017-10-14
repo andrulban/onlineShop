@@ -2,6 +2,7 @@ package andruha_denia.controllers.rest;
 
 import andruha_denia.models.entities.Drive;
 import andruha_denia.services.interfaces.DriveService;
+import core.cross_service.dto.entity.DTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,14 +34,14 @@ public class DriveControllerRest {
     }
 
     @PostMapping(value = "/db/drives")
-    public void add(@RequestBody Drive drive) {
-        driveService.addDrive(drive);
+    public void add(@RequestBody DTO dto) {
+        driveService.addDrive(Drive.revert(dto));
     }
 
     @PutMapping(value = "/db/drives/{id}")
-    public void edit(@PathVariable long id, @RequestBody Drive drive) {
-        drive.setId(id);
-        driveService.editDrive(drive);
+    public void edit(@PathVariable long id, @RequestBody DTO dto) {
+        dto.setId(id);
+        driveService.editDrive(Drive.revert(dto));
     }
 
     @DeleteMapping(value = "/db/drives/{id}")

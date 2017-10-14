@@ -14,7 +14,6 @@ import java.io.IOException;
  * @author azozello
  * @since 28.09.17.
  */
-
 @Component
 public class AddHeaderInterceptor implements ClientHttpRequestInterceptor {
 

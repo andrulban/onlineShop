@@ -2,6 +2,7 @@ package andruha_denia.controllers.rest;
 
 import andruha_denia.models.entities.Output;
 import andruha_denia.services.interfaces.OutputService;
+import core.cross_service.dto.entity.DTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -33,14 +34,14 @@ public class OutputControllerRest {
     }
 
     @PostMapping(value = "/db/outputs")
-    public void add(@RequestBody Output output){
-        outputService.addOutput(output);
+    public void add(@RequestBody DTO dto){
+        outputService.addOutput(Output.revert(dto));
     }
 
     @PutMapping(value = "/db/outputs/{id}")
-    public void edit(@PathVariable long id, @RequestBody Output output){
-        output.setId(id);
-        outputService.editOutput(output);
+    public void edit(@PathVariable long id, @RequestBody DTO dto){
+        dto.setId(id);
+        outputService.editOutput(Output.revert(dto));
     }
 
     @DeleteMapping(value = "/db/outputs/{id}")

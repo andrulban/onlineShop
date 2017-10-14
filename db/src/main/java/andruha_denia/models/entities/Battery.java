@@ -1,6 +1,7 @@
 package andruha_denia.models.entities;
 
 import andruha_denia.models.enums.BatteryType;
+import andruha_denia.models.exceptions.WrongSourceDTO;
 import andruha_denia.utils.DTOConvertible;
 import core.cross_service.dto.entity.DTO;
 
@@ -21,6 +22,20 @@ public class Battery implements DTOConvertible {
 
     @Column
     private String description;
+
+
+    public static Battery revert(DTO sourceDTO){
+        Battery result = new Battery();
+
+        try {
+            result.setBatteryType(BatteryType.valueOf(sourceDTO.getFields().get("batteryType")));
+            result.setDescription(sourceDTO.getFields().get("description"));
+        } catch (NullPointerException npe){
+            throw new WrongSourceDTO(npe.getMessage());
+        }
+
+        return result;
+    }
 
     @Override
     public DTO convert() {

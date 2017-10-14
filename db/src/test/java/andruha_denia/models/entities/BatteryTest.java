@@ -1,6 +1,7 @@
 package andruha_denia.models.entities;
 
 import andruha_denia.models.enums.BatteryType;
+import andruha_denia.models.exceptions.WrongSourceDTO;
 import andruha_denia.utils.DTOConvertible;
 import core.cross_service.dto.entity.DTO;
 import org.apache.log4j.Logger;
@@ -62,6 +63,12 @@ public class BatteryTest {
         }
 
         logger.info("Battery not null test passed");
+    }
+
+    @Test(expected = WrongSourceDTO.class)
+    public void revertExceptionTest(){
+        DTO testDTO = new DTO();
+        Battery.revert(testDTO);
     }
 
     @Test

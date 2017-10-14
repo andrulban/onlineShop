@@ -25,12 +25,9 @@ class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .antMatchers("/","/test/unsecured/**").permitAll()
                 .anyRequest().authenticated().and().httpBasic()
                 .and()
-                .formLogin()
-                .loginPage("/login")
-                .permitAll()
+                .formLogin().loginPage("/login").permitAll()
                 .and()
-                .logout()
-                .permitAll();
+                .logout().permitAll();
         http.csrf().disable();
     }
 

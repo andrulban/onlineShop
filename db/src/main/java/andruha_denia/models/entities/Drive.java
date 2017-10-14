@@ -1,6 +1,8 @@
 package andruha_denia.models.entities;
 
+import andruha_denia.models.enums.ConnectionAdapterType;
 import andruha_denia.models.enums.DriveType;
+import andruha_denia.models.exceptions.WrongSourceDTO;
 import andruha_denia.utils.DTOConvertible;
 import core.cross_service.dto.entity.DTO;
 
@@ -21,6 +23,25 @@ public class Drive implements DTOConvertible {
 
     @Column
     private int size;
+
+    public static Drive revert(DTO sourceDTO){
+        Drive result = new Drive();
+
+        try {
+            result.setId(sourceDTO.getId());
+            result.setDriveType(DriveType.valueOf
+                    (sourceDTO.getFields().get("driveType")));
+            result.setSize(new Integer(sourceDTO.getFields().get("size")));
+        } catch (NullPointerException npe){
+            throw new WrongSourceDTO("Required field was not found");
+        } catch (NumberFormatException nfe){
+            throw new WrongSourceDTO("Field 'version' has illegal value ");
+        }  catch (IllegalArgumentException iae){
+            throw new WrongSourceDTO("Field 'connectionAdapterType' has illegal value ");
+        }
+
+        return result;
+    }
 
     @Override
     public DTO convert() {

@@ -1,8 +1,7 @@
 package andruha_denia.models.entities;
 
-import andruha_denia.models.enums.BatteryType;
 import andruha_denia.models.enums.ConnectionAdapterType;
-import andruha_denia.utils.DTOConvertible;
+import andruha_denia.models.exceptions.WrongSourceDTO;
 import core.cross_service.dto.entity.DTO;
 import org.apache.log4j.Logger;
 import org.junit.Assert;
@@ -62,6 +61,45 @@ public class ConnectionAdepterTest {
         }
 
         logger.info("ConnectionAdapter not null test passed");
+    }
+
+    @Test
+    public void ConnectionAdapterEqualityTest(){
+        DTO dto = new DTO();
+        dto.setId(228);
+        dto.addField("connectionAdapterType","WIFI");
+        dto.addField("version","1.0");
+
+        ConnectionAdapter CASource = new ConnectionAdapter();
+        CASource.setId(228);
+        CASource.setVersion(1.0f);
+        CASource.setConnectionAdapterType(ConnectionAdapterType.WIFI);
+
+        ConnectionAdapter CAResult = ConnectionAdapter.revert(dto);
+
+        Assert.assertEquals(CASource.getId(),CAResult.getId());
+        Assert.assertEquals(CASource.getConnectionAdapterType(),CAResult.getConnectionAdapterType());
+    }
+
+    @Test(expected = WrongSourceDTO.class)
+    public void ConnectionAdapterNullTest(){
+        DTO dto = new DTO();
+        ConnectionAdapter.revert(dto);
+    }
+
+    @Test(expected = WrongSourceDTO.class)
+    public void ConnectionAdapterTypeTest(){
+        DTO dto = new DTO();
+        dto.addField("connectionAdapterType","s");
+        ConnectionAdapter.revert(dto);
+    }
+
+    @Test(expected = WrongSourceDTO.class)
+    public void ConnectionAdapterVersionTest(){
+        DTO dto = new DTO();
+        dto.addField("connectionAdapterType","WIFI");
+        dto.addField("version","sd");
+        ConnectionAdapter.revert(dto);
     }
 
     @Test

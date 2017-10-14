@@ -12,7 +12,6 @@ import java.util.LinkedList;
  * @author  azozello
  * @since 28.09.17.
  */
-
 @Configuration
 public class RestTemplateConfig {
 

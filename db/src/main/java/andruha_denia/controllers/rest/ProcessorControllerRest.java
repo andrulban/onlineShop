@@ -2,6 +2,7 @@ package andruha_denia.controllers.rest;
 
 import andruha_denia.models.entities.Processor;
 import andruha_denia.services.interfaces.ProcessorService;
+import core.cross_service.dto.entity.DTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -32,14 +33,14 @@ public class ProcessorControllerRest {
     }
 
     @PostMapping(value = "/db/processors")
-    public void add(@RequestBody Processor processor){
-        processorService.addProcessor(processor);
+    public void add(@RequestBody DTO dto){
+        processorService.addProcessor(Processor.revert(dto));
     }
 
     @PutMapping(value = "/db/processors/{id}")
-    public void edit(@PathVariable long id, @RequestBody Processor processor){
-        processor.setId(id);
-        processorService.editProcessor(processor);
+    public void edit(@PathVariable long id, @RequestBody DTO dto){
+        dto.setId(id);
+        processorService.editProcessor(Processor.revert(dto));
     }
 
     @DeleteMapping(value = "/db/processors/{id}")
